@@ -5,15 +5,28 @@
             ngControl="FirstName" 
             #firstname="ngForm" 
             type="text" 
-            class="form-control" required>
-         <div *ngIf="firstname.touched && !firstname.valid" class="alert alert-danger">
-             Field is required
-         </div>
+            class="form-control" required
+            minlength="3">
+            <div *ngIf="firstname.touched && firstname.errors">
+                <div *ngIf="firstname.errors.required" class="alert alert-danger">
+                    Field is required!
+                </div>
+                <div *ngIf="firstname.errors.minlength" class="alert alert-danger">
+                    Name must be at least three character long!
+                </div>
+            </div>
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea ngControl="comment" #comment="ngForm" id="comment" cols="30" rows="10" class="form-control" required></textarea>
-        <div *ngIf="comment.touched && !comment.valid" class="alert alert-danger">Comment is required!</div>   
+        <textarea ngControl="comment" #comment="ngForm" id="comment" cols="30" rows="10" class="form-control" required minlength="3"></textarea>
+        <div *ngIf="comment.touched && comment.errors">
+            <div class="alert alert-danger" *ngIf="comment.errors.required">
+                Required Field!
+            </div>
+            <div class="alert alert-danger" *ngIf="comment.errors.minlength">
+                Minimum 3 characters!
+            </div>
+        </div>   
     </div>
     
     <button class="btn btn-primary" type="submit">Submit</button>
