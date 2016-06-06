@@ -8,11 +8,12 @@
             class="form-control" required
             minlength="3">
             <div *ngIf="firstname.touched && firstname.errors">
+                {{firstname.errors | json}}
                 <div *ngIf="firstname.errors.required" class="alert alert-danger">
                     Field is required!
                 </div>
                 <div *ngIf="firstname.errors.minlength" class="alert alert-danger">
-                    Name must be at least three character long!
+                    Name must be at least {{firstname.errors.minlength.requiredLength}} character long!
                 </div>
             </div>
     </div>
@@ -20,6 +21,7 @@
         <label for="comment">Comment</label>
         <textarea ngControl="comment" #comment="ngForm" id="comment" cols="30" rows="10" class="form-control" required minlength="3"></textarea>
         <div *ngIf="comment.touched && comment.errors">
+            
             <div class="alert alert-danger" *ngIf="comment.errors.required">
                 Required Field!
             </div>
