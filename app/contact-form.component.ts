@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     templateUrl: 'app/contact-form.component.html'
 })
 export class ContactFormComponent {
-    log(x){
-        console.log(x);
+    OnSubmit(form){
+        console.log(form);
     }
 }
